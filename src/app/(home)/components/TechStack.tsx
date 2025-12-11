@@ -7,12 +7,13 @@ const techLogos = [
 
 export function TechStack() {
   return (
-    <section id="techstack" className="mt-30 scroll-mt-24">
-      <h1 className="flex items-center justify-center text-6xl pb-9">
+    <section id="techstack" className="mt-30 scroll-mt-24 px-4">
+      <h1 className="flex items-center justify-center text-4xl sm:text-6xl pb-9 font-bold">
         My Tech Stack
       </h1>
+
       <div
-        className="max-w-[800px] mx-auto py-16 px-8 rounded-[25px]"
+        className="max-w-[800px] mx-auto py-10 sm:py-16 px-5 sm:px-8 rounded-[25px]"
         style={{
           border: "2px solid transparent",
           borderRadius: "25px",
@@ -23,18 +24,24 @@ export function TechStack() {
           backgroundClip: "padding-box, border-box",
         }}
       >
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-12 mt-6">
-            {techLogos.map((tech, index) => (
-              <img
-                key={index}
-                src={`/${tech}.svg`}
-                alt={tech}
-                className="h-8 sm:h-10 md:h-12 w-auto mx-2 sm:mx-4 md:mx-6 filter invert brightness-125 transition-transform duration-300 hover:scale-110"
-                draggable={false}
-              />
-            ))}
-          </div>
+        {/* RESPONSIVE GRID (Perfect Alignment) */}
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-6 sm:gap-8 place-items-center">
+          {techLogos.map((tech, index) => (
+            <img
+              key={index}
+              src={`/${tech}.svg`}
+              alt={tech}
+              className="
+                h-10 w-10 
+                sm:h-12 sm:w-12 
+                md:h-14 md:w-14 
+                filter invert brightness-125 
+                transition-transform duration-300 
+                hover:scale-110
+              "
+              draggable={false}
+            />
+          ))}
         </div>
       </div>
     </section>
