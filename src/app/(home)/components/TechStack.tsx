@@ -1,19 +1,35 @@
 import React from "react";
 
-const techLogos = [
-  "html", "css", "tailwindcss", "react", "javascript",
-  "nodedotjs", "next", "express", "figma", "python"
-];
-
 export function TechStack() {
+  // Mobile layout ONLY
+  const mobileLayout = [
+    ["html", "css", "tailwindcss", "react"],     // Row 1
+    ["javascript", "express", "mongodb"],        // Row 2
+    ["next", "python"],                          // Row 3
+  ];
+
+  // Original flat list for desktop (unchanged)
+  const allTechs = [
+    "html",
+    "css",
+    "tailwindcss",
+    "react",
+    "javascript",
+    "nodedotjs",
+    "next",
+    "express",
+    "figma",
+    "python",
+  ];
+
   return (
-    <section id="techstack" className="mt-30 scroll-mt-24 px-4">
-      <h1 className="flex items-center justify-center text-4xl sm:text-6xl pb-9 font-bold">
+    <section id="techstack" className="mt-30 scroll-mt-24">
+      <h1 className="flex items-center justify-center text-6xl pb-9">
         My Tech Stack
       </h1>
 
       <div
-        className="max-w-[800px] mx-auto py-10 sm:py-16 px-5 sm:px-8 rounded-[25px]"
+        className="max-w-[800px] mx-auto py-16 px-8 rounded-[25px]"
         style={{
           border: "2px solid transparent",
           borderRadius: "25px",
@@ -24,25 +40,40 @@ export function TechStack() {
           backgroundClip: "padding-box, border-box",
         }}
       >
-        {/* RESPONSIVE GRID (Perfect Alignment) */}
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-6 sm:gap-8 place-items-center">
-          {techLogos.map((tech, index) => (
+
+        {/* ---------------- Laptop / Desktop View (unchanged) ---------------- */}
+        <div className="hidden sm:flex flex-wrap items-center justify-center gap-8">
+          {allTechs.map((tech, index) => (
             <img
               key={index}
               src={`/${tech}.svg`}
               alt={tech}
-              className="
-                h-10 w-10 
-                sm:h-12 sm:w-12 
-                md:h-14 md:w-14 
-                filter invert brightness-125 
-                transition-transform duration-300 
-                hover:scale-110
-              "
+              className="h-12 w-auto mx-4 filter invert brightness-125 transition-transform duration-300 hover:scale-110"
               draggable={false}
             />
           ))}
         </div>
+
+        {/* ---------------- Mobile View (custom 3-row layout) ---------------- */}
+        <div className="flex sm:hidden flex-col items-center gap-8">
+          {mobileLayout.map((row, rowIdx) => (
+            <div
+              key={rowIdx}
+              className="flex justify-center gap-6 flex-wrap"
+            >
+              {row.map((tech, techIdx) => (
+                <img
+                  key={techIdx}
+                  src={`/${tech}.svg`}
+                  alt={tech}
+                  className="h-10 w-auto filter invert brightness-125 transition-transform duration-300 hover:scale-110"
+                  draggable={false}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   );
